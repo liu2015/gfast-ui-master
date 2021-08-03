@@ -171,11 +171,11 @@
                       <el-input v-model="form.lib_name" placeholder="请输入脚本名字" />
                     </el-form-item>     
 
-                    <!--       
+                          
                     <el-form-item label="脚本上传路径" prop="lib_rul">
-                      <el-input v-model="form.lib_rul" placeholder="请输入脚本上传路径" />
+                      <el-input disabled v-model="form.lib_rul" placeholder="请输入脚本上传路径" />
                     </el-form-item> 
-                    -->
+                   
                     <el-form-item label="脚本上传路径">
                     
                     <!-- 附件上传组件辅助 -->
@@ -386,6 +386,7 @@ handleFileUploadProgress(event, file, fileList) {
 handleFileSuccess(response, file, fileList) {
   this.upload.isUploading = false;
   this.form.lib_rul=response.data.fileInfo.fileUrl;
+ 
   this.msgSuccess(response.msg);
   console.log(response.data.fileInfo.fileUrl);
   console.log(response.msg);
