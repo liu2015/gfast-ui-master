@@ -1,0 +1,180 @@
+<template>
+  <div class="dashboard-editor-container">
+    <div class="dashboard-promote">
+      <el-row>
+        <el-col :span="24">
+          <el-card class="box-card">
+            <p>这是周黑鸭运维平台的介绍</p>
+            <p>初衷是，运维的动作脚本化，自动化，把针对门店问题的解决思路历程，执行动作沉淀成一个标准的执行动作，然后通过自动化脚本实现问题的解决</p>
+            <p>脚本集合简介</p>
+            <p>一键安装餐道，一键清理上传异常，一键诊断是否能上网</p>
+          </el-card>
+        </el-col>
+      </el-row>
+      <el-row class="other">
+        <el-col :span="8">
+          <el-card class="box-card kj">
+            <div slot="header" class="clearfix">
+              <span class="title">gfast后台管理框架</span>
+            </div>
+            <p>使用的go语言（go frame框架）</p>
+            <!-- <div class="git-res">
+              <el-link type="primary" icon="el-icon-cloudy" href="https://gitee.com/tiger1103/gfast" >访问码云</el-link>
+              <el-link type="success" icon="el-icon-user" href="https://github.com/tiger1103/gfast">访问github</el-link>
+              <el-link type="info" icon="el-icon-s-home" href="http://www.g-fast.cn">访问官网</el-link>
+            </div> -->
+            <!-- <div class="product">
+              <h3>公司产品</h3>
+              <ul>
+                <li><a href="http://www.qjit.cn/wallchartoperation.html" target="_blank" class="text-danger">挂图作战指挥平台</a></li>
+                <li><a href="http://www.qjit.cn/macrodata.html" target="_blank" class="text-danger">宏观数据库平台</a></li>
+                <li><a href="http://www.qjit.cn/usedcar.html" target="_blank" class="text-danger">二手车管理系统</a></li>
+                <li><a href="http://www.qjit.cn/" target="_blank" class="text-danger">公租房管理系统</a></li>
+                <li>流程引擎归属<a href="https://www.cojz8.com/" target="_blank" class="text-danger">TPFLOW</a>版权所有</li>
+              </ul>
+            </div> -->
+          </el-card>
+          <el-card class="box-card xx">
+            <div slot="header" class="clearfix">
+              <span class="title">联系信息</span>
+            </div>
+            <p><i class="el-icon-s-promotion"></i> 官网：<a href="http://www.zhouheiya.cn/" class="text-info" target="_blank">http://www.zhouheiya.cn/</a></p>
+            <p><i class="el-icon-s-custom"></i> 电话：15927529577</p>
+          </el-card>
+        </el-col>
+        <el-col :span="16">
+          <el-card class="box-card jz">
+            <div slot="header" class="clearfix">
+              <span class="title">项目介绍</span>
+            </div>
+            <p>ITOM:POS自动化运维平台：</p>
+            <img style="width: 700px; height: 360px" src="/images/zhylog.png"/>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+
+    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+      <line-chart :chart-data="lineChartData" />
+    </el-row>
+
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <raddar-chart />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <pie-chart />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <bar-chart />
+        </div>
+      </el-col>
+    </el-row>
+
+
+  </div>
+</template>
+
+<script>
+import PanelGroup from './dashboard/PanelGroup'
+import LineChart from './dashboard/LineChart'
+import RaddarChart from './dashboard/RaddarChart'
+import PieChart from './dashboard/PieChart'
+import BarChart from './dashboard/BarChart'
+
+const lineChartData = {
+  newVisitis: {
+    expectedData: [100, 120, 161, 134, 105, 160, 165],
+    actualData: [120, 82, 91, 154, 162, 140, 145]
+  },
+  messages: {
+    expectedData: [200, 192, 120, 144, 160, 130, 140],
+    actualData: [180, 160, 151, 106, 145, 150, 130]
+  },
+  purchases: {
+    expectedData: [80, 100, 121, 104, 105, 90, 100],
+    actualData: [120, 90, 100, 138, 142, 130, 130]
+  },
+  shoppings: {
+    expectedData: [130, 140, 141, 142, 145, 150, 160],
+    actualData: [120, 82, 91, 154, 162, 140, 130]
+  }
+}
+
+export default {
+  name: 'Index',
+  components: {
+    PanelGroup,
+    LineChart,
+    RaddarChart,
+    PieChart,
+    BarChart
+  },
+  data() {
+    return {
+      lineChartData: lineChartData.newVisitis
+    }
+  },
+  methods: {
+    handleSetLineChartData(type) {
+      this.lineChartData = lineChartData[type]
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+.dashboard-promote .el-row{
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.dashboard-promote .el-row .jz{
+  height: 500px;
+}
+.dashboard-promote .el-row .kj{
+  height: 300px;
+}
+.dashboard-promote .el-row .xx{
+  height: 200px;
+}
+
+.git-res{
+  margin-top: 20px;
+}
+.git-res .el-link{
+  margin-right: 30px;
+}
+
+ul,li{ padding:0;margin:0;list-style:none}
+
+.product li{
+  margin-bottom: 20px;
+  float: left;
+  width: 210px;
+}
+
+.dashboard-editor-container {
+  padding: 32px;
+  background-color: rgb(240, 242, 245);
+  position: relative;
+
+  .chart-wrapper {
+    background: #fff;
+    padding: 16px 16px 0;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width:1024px) {
+  .chart-wrapper {
+    padding: 8px;
+  }
+}
+</style>
