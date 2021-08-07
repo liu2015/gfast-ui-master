@@ -381,6 +381,7 @@ fileList: []
 // 文件上传中处理
 handleFileUploadProgress(event, file, fileList) {
   this.upload.isUploading = true;
+
 },
 // 文件上传成功处理
 handleFileSuccess(response, file, fileList) {
