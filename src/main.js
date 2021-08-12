@@ -20,6 +20,7 @@ import { getDicts } from "@/api/system/dict/data";
 import { getConfigKey } from "@/api/system/config";
 import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTree } from "@/utils/ruoyi";
 import Pagination from "@/components/Pagination";
+import echarts from 'echarts'
 
 
 // 全局方法挂载
@@ -32,6 +33,8 @@ Vue.prototype.selectDictLabel = selectDictLabel
 Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
 Vue.prototype.apiUrl = process.env.VUE_APP_BASE_API
+Vue.prototype.$echarts = echarts
+// Vue.prototype.$echarts = echarts
 
 Vue.prototype.msgSuccess = function (msg) {
   this.$message({ showClose: true, message: msg, type: "success" });
@@ -44,6 +47,7 @@ Vue.prototype.msgError = function (msg) {
 Vue.prototype.msgInfo = function (msg) {
   this.$message.info(msg);
 }
+
 
 // 全局组件挂载
 Vue.component('Pagination', Pagination)
