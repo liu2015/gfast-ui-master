@@ -209,7 +209,7 @@
 </template>
 <script>
 import { listNolist, getNolist, delNolist, addNolist, updateNolist,listNolisttest } from '@/api/module/nolist'
-
+import echarts from 'echarts'
 
 export default {
   name: "nolist",
@@ -299,7 +299,8 @@ export default {
           drawLine(){
             console.log("这是一个数组看看有没有数据",this.nolistListtest);
         // 基于准备好的dom，初始化echarts实例
-        let myChart = this.$echarts.init(document.getElementById('myChart'))
+        let myChart = echarts.init(document.getElementById('myChart'))
+
         // 绘制图表
         myChart.setOption( {
     title: {
@@ -307,6 +308,40 @@ export default {
         subtext: '数据库所有时间段',
         left: 'center'
     },
+    label: {
+                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                backgroundColor: '#F6F8FC',
+                borderColor: '#8C8D8E',
+                borderWidth: 1,
+                borderRadius: 4,
+                
+                rich: {
+                    a: {
+                        color: '#6E7079',
+                        lineHeight: 22,
+                        align: 'center'
+                    },
+                    hr: {
+                        borderColor: '#8C8D8E',
+                        width: '100%',
+                        borderWidth: 1,
+                        height: 0
+                    },
+                    b: {
+                        color: '#4C5058',
+                        fontSize: 14,
+                        fontWeight: 'bold',
+                        lineHeight: 33
+                    },
+                    per: {
+                        color: '#fff',
+                        backgroundColor: '#4C5058',
+                        padding: [3, 4],
+                        borderRadius: 4
+                    }
+                }
+            },
+
     tooltip: {
         trigger: 'item'
     },
