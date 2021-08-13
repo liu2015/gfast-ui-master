@@ -127,7 +127,7 @@
     </el-row>
 
     <el-row >
-      <div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '300px'}"></div>
+      <div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
     </el-row>
 
 
@@ -356,7 +356,7 @@ export default {
         {
             name: '访问来源',
             type: 'pie',
-            radius: '50%',
+            radius: '60%',
             data: this.nolistListtest,
             emphasis: {
                 itemStyle: {
