@@ -219,34 +219,34 @@
              <el-table-column label="门店问题工单名字" align="center" prop="sp_name" />   
              <el-table-column label="发起时间" align="center" prop="apply_time" width="180">
                <template slot-scope="scope">
-                 <span>{{ parseTime(scope.row.apply_time, '{y}-{m}-{d}') }}</span>
+                 <span>{{ parseTime(scope.row.apply_time, '{y}-{m}-{d} {h}:{i}:{s}') }}</span>
                </template>
              </el-table-column>   
              <el-table-column label="发起用户id" align="center" prop="applyer_userid" />   
-             <el-table-column label="审批详情数组" align="center" prop="sp_record" />   
+             <el-table-column label="审批详情数组" align="center"  show-overflow-tooltip='true' prop="sp_record" />   
              <el-table-column label="审批状态" align="center" prop="sp_record_sp_status" />   
              <el-table-column label="审批人id" align="center" prop="details_userid" />   
              <el-table-column label="审批意见" align="center" prop="details_speech" />   
              <el-table-column label="分支审批状态2是同意状态" align="center" prop="details_sp_status" />   
              <el-table-column label="审批时间" align="center" prop="details_sptime" width="180">
                <template slot-scope="scope">
-                 <span>{{ parseTime(scope.row.details_sptime, '{y}-{m}-{d}') }}</span>
+                 <span>{{ parseTime(scope.row.details_sptime, '{y}-{m}-{d} {h}:{i}:{s}') }}</span>
                </template>
              </el-table-column>   
              <el-table-column label="问题类型" align="center" prop="value_proble" />   
              <el-table-column label="报修类型" align="center" prop="value_repair" />   
              <el-table-column label="报修区域" align="center" prop="value_region" />   
-             <el-table-column label="故障描述" align="center" prop="value_describe" />   
+             <el-table-column label="故障描述" align="center" show-overflow-tooltip='true' prop="value_describe" />   
              <el-table-column label="报修门店" align="center" prop="value_store" />   
              <el-table-column label="定义标签" align="center" prop="value_label" />   
              <el-table-column label="定义标签补充" align="center" prop="value_label_sup" />   
              <el-table-column label="备注人id" align="center" prop="comment_userid" />   
              <el-table-column label="备注人时间" align="center" prop="commenttime" width="180">
-               <template slot-scope="scope">
-                 <span>{{ parseTime(scope.row.commenttime, '{y}-{m}-{d}') }}</span>
+               <template slot-scope="scope" >
+                 <span>{{ parseTime(scope.row.commenttime, '{y}-{m}-{d} {h}:{i}:{s}') }}</span>
                </template>
              </el-table-column>   
-             <el-table-column label="备注问题内容" align="center" prop="commentcontent" />   
+             <el-table-column label="备注问题内容" show-overflow-tooltip='true' align="center" prop="commentcontent" />   
              <el-table-column label="备注" align="center" prop="remarks" />    
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
