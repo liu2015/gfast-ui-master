@@ -125,7 +125,10 @@
         >删除</el-button>
       </el-col>
     </el-row>
-<div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '300px'}"></div>
+
+    <el-row >
+      <div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '300px'}"></div>
+    </el-row>
 
 
 
