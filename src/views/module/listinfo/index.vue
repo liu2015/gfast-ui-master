@@ -37,51 +37,8 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="审批详情数组" prop="sp_record">
-        <el-input
-          v-model="queryParams.sp_record"
-          placeholder="请输入审批详情数组"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="审批状态" prop="sp_record_sp_status">
-        <el-select v-model="queryParams.sp_record_sp_status" placeholder="请选择审批状态" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="审批人id" prop="details_userid">
-        <el-input
-          v-model="queryParams.details_userid"
-          placeholder="请输入审批人id"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="审批意见" prop="details_speech">
-        <el-input
-          v-model="queryParams.details_speech"
-          placeholder="请输入审批意见"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="分支审批状态2是同意状态" prop="details_sp_status">
-        <el-select v-model="queryParams.details_sp_status" placeholder="请选择分支审批状态2是同意状态" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="审批时间" prop="details_sptime">
-        <el-date-picker clearable size="small" style="width: 200px"
-          v-model="queryParams.details_sptime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="选择审批时间">
-        </el-date-picker>
-      </el-form-item>
+
+
       <el-form-item label="问题类型" prop="value_proble">
         <el-input
           v-model="queryParams.value_proble"
@@ -109,24 +66,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="故障描述" prop="value_describe">
-        <el-input
-          v-model="queryParams.value_describe"
-          placeholder="请输入故障描述"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="报修门店" prop="value_store">
-        <el-input
-          v-model="queryParams.value_store"
-          placeholder="请输入报修门店"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+
       <el-form-item label="定义标签" prop="value_label">
         <el-input
           v-model="queryParams.value_label"
@@ -162,24 +102,7 @@
           placeholder="选择备注人时间">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="备注问题内容" prop="commentcontent">
-        <el-input
-          v-model="queryParams.commentcontent"
-          placeholder="请输入备注问题内容"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="备注" prop="remarks">
-        <el-input
-          v-model="queryParams.remarks"
-          placeholder="请输入备注"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+     
         <el-form-item>
             <el-button type="cyan" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
             <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
