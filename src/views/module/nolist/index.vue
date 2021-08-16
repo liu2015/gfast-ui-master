@@ -296,10 +296,8 @@ export default {
     },
     
 
-
-
     methods: {
-          drawLine(){
+     drawLine(){
             console.log("这是一个数组看看有没有数据",this.nolistListtest);
         // 基于准备好的dom，初始化echarts实例
         let myChart = echarts.init(document.getElementById('myChart'))

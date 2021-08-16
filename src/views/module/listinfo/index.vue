@@ -136,6 +136,13 @@
         >删除</el-button>
       </el-col>
     </el-row>
+
+
+        <el-row >
+      <div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
+    </el-row>
+
+
     <el-table v-loading="loading" :data="listinfoList" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center" />   
              <el-table-column label="单号" align="center" prop="sp_no" />   
@@ -277,6 +284,7 @@
 </template>
 <script>
 import { listListinfo, getListinfo, delListinfo, addListinfo, updateListinfo } from '@/api/module/listinfo'
+import echarts from 'echarts'
 export default {
   name: "listinfo",
   data() {
@@ -295,6 +303,7 @@ export default {
           total: 0,
           // listinfo表格数据
           listinfoList: [],
+          listinfo:[],
           // 弹出层标题
           title: "",
           // 是否显示弹出层
@@ -344,12 +353,102 @@ export default {
     created() {
         this.getList();    
     },
+
+    mounted () {
+      this.drawLine();
+      var t=setTimeout(() => {
+      this.drawLine();
+      }, 500);
+    },
+
+    watch: {
+      listinfo(val,oldval){
+        console.log("有变化");
+        this.drawLine()
+      }
+    },
+
     methods: {
+
+    drawLine(){
+            console.log("这是一个数组看看有没有数据",this.listinfo);
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('myChart'))
+
+        // 绘制图表
+        myChart.setOption( {
+    title: {
+        text: '门店问题工单主数据来源',
+        subtext: '数据库所有时间段',
+        left: 'center'
+    },
+    label: {
+                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                backgroundColor: '#F6F8FC',
+                borderColor: '#8C8D8E',
+                borderWidth: 1,
+                borderRadius: 4,
+                
+                rich: {
+                    a: {
+                        color: '#6E7079',
+                        lineHeight: 22,
+                        align: 'center'
+                    },
+                    hr: {
+                        borderColor: '#8C8D8E',
+                        width: '100%',
+                        borderWidth: 1,
+                        height: 0
+                    },
+                    b: {
+                        color: '#4C5058',
+                        fontSize: 14,
+                        fontWeight: 'bold',
+                        lineHeight: 33
+                    },
+                    per: {
+                        color: '#fff',
+                        backgroundColor: '#4C5058',
+                        padding: [3, 4],
+                        borderRadius: 4
+                    }
+                }
+            },
+
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+    },
+    series: [
+        {
+            name: '工号-工单数',
+            type: 'pie',
+            radius: '60%',
+            data: this.listinfo,
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+});
+},
+
+
         /** 查询listinfo列表 */
         getList() {
           this.loading = true;
           listListinfo(this.queryParams).then(response => {
             this.listinfoList = response.data.list;
+            this.listinfo=response.data.pic
+            console.log(response);
             this.total = response.data.total;
             this.loading = false;
           });
