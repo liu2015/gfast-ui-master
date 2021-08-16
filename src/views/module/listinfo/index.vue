@@ -378,8 +378,8 @@ export default {
         // 绘制图表
         myChart.setOption( {
     title: {
-        text: '门店问题工单主数据来源',
-        subtext: '数据库所有时间段',
+        text: '门店问题工单主数据来源top10',
+        subtext: '只受时间段控制，数据库所有时间段',
         left: 'center'
     },
     label: {
