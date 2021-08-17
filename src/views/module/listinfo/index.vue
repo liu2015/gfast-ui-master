@@ -137,6 +137,8 @@
       </el-col>
     </el-row>
 
+      <div id="catlist" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
+
 
         <el-row >
       <div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
@@ -285,8 +287,12 @@
 <script>
 import { listListinfo, getListinfo, delListinfo, addListinfo, updateListinfo } from '@/api/module/listinfo'
 import echarts from 'echarts'
+
 export default {
   name: "listinfo",
+
+
+
   data() {
     return {
           // 遮罩层
@@ -304,6 +310,13 @@ export default {
           // listinfo表格数据
           listinfoList: [],
           listinfo:[],
+
+          // 返回cat结果
+
+          nametest:[],
+          valuetest:[],
+
+  
           // 弹出层标题
           title: "",
           // 是否显示弹出层
@@ -365,10 +378,58 @@ export default {
       listinfo(val,oldval){
         console.log("有变化");
         this.drawLine()
+      },
+      nametest(var1,oldval){
+        console.log("有变化");
+        this.linecahrtdatat()
+      },
+      valuetest(var1,oldval){
+        this.linecahrtdatat()
       }
     },
 
     methods: {
+      linecahrtdatat(){
+        // let catchart=echarts.init(document.getElementById('catlist'))
+        let myChart = echarts.init(document.getElementById('catlist'))
+        myChart.setOption({
+               title:{
+            text:'30天折线图'
+        },  
+    // 鼠标停留标签
+    tooltip:{},
+    boundaryGap: false,
+    xAxis: {
+        type: 'category',
+        data: this.nametest,
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+
+        data: this.valuetest,
+       
+        type: 'line',
+        smooth: true,
+         itemStyle: {
+            normal: {
+              color: '#3888fa',
+              lineStyle: {
+                color: '#3888fa',
+                width: 2
+              },
+              areaStyle: {
+                color: '#f3f8ff'
+              }
+            }
+          },
+    }]
+    
+},
+)
+      },
+
 
     drawLine(){
             console.log("这是一个数组看看有没有数据",this.listinfo);
@@ -447,7 +508,12 @@ export default {
           this.loading = true;
           listListinfo(this.queryParams).then(response => {
             this.listinfoList = response.data.list;
-            this.listinfo=response.data.pic
+            this.listinfo=response.data.pic;
+            //           nametest:[],
+            // valuetest:[],
+            // 
+            this.nametest=response.data.cat;
+            this.valuetest=response.data.catvalue;
             console.log(response);
             this.total = response.data.total;
             this.loading = false;
