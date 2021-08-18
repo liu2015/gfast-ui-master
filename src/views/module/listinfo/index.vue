@@ -139,7 +139,7 @@
 
       <div id="catlist" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
 
-
+      <div id="domlist" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
         <el-row >
       <div id="myChart" class="chart-wrapper" :style="{width: '100%', height: '450px'}"></div>
     </el-row>
@@ -316,6 +316,11 @@ export default {
           nametest:[],
           valuetest:[],
 
+          // dom 数据
+          domname:[],
+          domvalue:[],
+
+
   
           // 弹出层标题
           title: "",
@@ -369,9 +374,9 @@ export default {
 
     mounted () {
       this.drawLine();
-      var t=setTimeout(() => {
-      this.drawLine();
-      }, 500);
+      // var t=setTimeout(() => {
+      // this.drawLine();
+      // }, 500);
     },
 
     watch: {
@@ -385,10 +390,83 @@ export default {
       },
       valuetest(var1,oldval){
         this.linecahrtdatat()
-      }
+      },
+          //       domname:[],
+          // domvalue:[],
+    domname(var1,oldval){
+        console.log("有变化");
+      this.listdom()
+    },
+    domvalue(var1,oldval){
+        console.log("有变化");
+      this.listdom()
+    },
     },
 
     methods: {
+      listdom(){
+        let myChart = echarts.init(document.getElementById('domlist'))
+        myChart.setOption({
+        title: {					         	
+                text: '标签工单类型分类top15',                
+                textStyle:{					//---主标题内容样式	
+                	color:'#fff'
+                },
+        },
+
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: this.domname,
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLabel:{
+           interval:0,//代表显示所有x轴标签显示
+           rotate:10,
+            },
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: '工单类型',
+            type: 'bar',
+            barWidth: '50%',
+            data: this.domvalue,
+                     itemStyle: {
+            normal: {
+              color: '#3888fa',
+              lineStyle: {
+                color: '#3888fa',
+                width: 2
+              },
+              areaStyle: {
+                color: '#f3f8ff'
+              }
+            }
+          },
+        }
+    ]       
+        })
+      },
+
       linecahrtdatat(){
         // let catchart=echarts.init(document.getElementById('catlist'))
         let myChart = echarts.init(document.getElementById('catlist'))
@@ -424,11 +502,10 @@ export default {
               }
             }
           },
-    }]
-    
+    }] 
 },
 )
-      },
+},
 
 
     drawLine(){
@@ -509,9 +586,15 @@ export default {
           listListinfo(this.queryParams).then(response => {
             this.listinfoList = response.data.list;
             this.listinfo=response.data.pic;
-            //           nametest:[],
+            // nametest:[],
             // valuetest:[],
             // 
+          // dom 数据
+          // domname:[],
+          // domvalue:[],
+          this.domname=response.data.domname;
+          this.domvalue=response.data.domvalue;
+            
             this.nametest=response.data.cat;
             this.valuetest=response.data.catvalue;
             console.log(response);
