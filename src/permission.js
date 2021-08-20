@@ -7,7 +7,9 @@ import { getToken } from '@/utils/auth'
 
 NProgress.configure({ showSpinner: false })
 
-const whiteList = ['/login', '/auth-redirect', '/bind', '/register']
+// 在此加白名单 ，就可以直接跳过来，然后在路由表写直接跳转的指向地址，不用动态懒加载。
+
+const whiteList = ['/login', '/auth-redirect', '/bind', '/register','/module/listinfo']
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
