@@ -55,10 +55,16 @@ export const constantRoutes = [
 
   // 例外路由地址，不用后台懒加载，用固定路由地址，这样就可以列外，并且直接跳转到这里来了。
     {
-    path: '/module/listinfo',
-    component: (resolve) => require(['@/views/module/listinfo'], resolve),
+    path: '/module/texu_ups',
+    component: (resolve) => require(['@/views/module/texu_up'], resolve),
     hidden: true
   },
+      // 例外路由地址，不用后台懒加载，用固定路由地址，这样就可以列外，并且直接跳转到这里来了。
+  //   {
+  //   path: '/module/listinfo',
+  //   component: (resolve) => require(['@/views/module/listinfo'], resolve),
+  //   hidden: true
+  // },
   {
     path: '',
     component: Layout,
