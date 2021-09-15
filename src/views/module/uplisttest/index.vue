@@ -149,9 +149,9 @@
             <!-- 添加或修改外部工单申请对话框 -->
                 <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
                   <el-form ref="form" :model="form" :rules="rules" label-width="80px">            
-                    <el-form-item label="问题类型(报修类型)">
-                      <el-select v-model="form.problem_type" placeholder="请选择问题类型(报修类型)">
-                        <el-option
+                    <el-form-item label="问题类型(报修类型)" prop="problem_type">
+                      <el-select v-model="form.problem_type" placeholder="请选择问题类型(报修类型)" >
+                        <el-option 
                           v-for="dict in problemTypeOptions"
                           :key="dict.key"
                           :label="dict.value"
@@ -159,7 +159,7 @@
                         ></el-option>
                       </el-select>
                     </el-form-item>            
-                    <el-form-item label="工单分派(大区分派)">
+                    <el-form-item label="工单分派(大区分派)" prop="distri">
                       <el-select v-model="form.distri" placeholder="请选择工单分派(大区分派)">
                         <el-option
                           v-for="dict in distriOptions"
@@ -169,18 +169,16 @@
                         ></el-option>
                       </el-select>
                     </el-form-item>            
-                    <el-form-item label="问题描述" prop="describe">
+                    <el-form-item label="问题描述" prop="describe" >
                       <el-input v-model="form.describe" placeholder="请输入问题描述" />
                     </el-form-item>            
-                    <el-form-item label="联系人电话" prop="tel">
+                    <el-form-item label="联系人电话" prop="tel" >
                       <el-input v-model="form.tel" placeholder="请输入联系人电话" />
                     </el-form-item>            
                     <el-form-item label="附件" prop="enclosure">
                       <el-input v-model="form.enclosure" placeholder="请输入附件" />
                     </el-form-item>            
-                    <el-form-item label="工单定义补充(默认信息填)" prop="labelpub">
-                      <el-input v-model="form.labelpub" placeholder="请输入工单定义补充(默认信息填)" />
-                    </el-form-item>            
+            
                     <el-form-item label="其他" prop="other">
                       <el-input v-model="form.other" placeholder="请输入其他" />
                     </el-form-item>
@@ -237,7 +235,19 @@ export default {
         // 表单参数
           form: {},
           // 表单校验
-          rules: {              
+          rules: {
+                 problem_type: [
+                { required: true, message: "门店问题工单名字不能为空", trigger: "blur" },
+              ], 
+                               distri: [
+                { required: true, message: "门店问题工单字段不能为空", trigger: "blur" },
+              ], 
+                                              describe: [
+                { required: true, message: "门店问题工单字段不能为空", trigger: "blur" },
+              ],     
+                                             tel: [
+                { required: true, message: "门店问题工单字段不能为空", trigger: "blur" },
+              ],            
           }
       };
     },
