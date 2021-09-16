@@ -174,9 +174,14 @@
                     </el-form-item>            
                     <el-form-item label="联系人电话" prop="tel" >
                       <el-input v-model="form.tel" placeholder="请输入联系人电话" />
-                    </el-form-item>            
+                      <!-- 上传附件图片的控件 -->
+                    </el-form-item>
+                          <el-form-item label="上传图片" prop="enclosure">
+           <UploadImage v-model="form.enclosure"/>
+               </el-form-item>  
+
                     <el-form-item label="附件" prop="enclosure">
-                      <el-input v-model="form.enclosure" placeholder="请输入附件" />
+                      <el-input disabled v-model="form.enclosure" placeholder="请输入附件" />
                     </el-form-item>            
             
                     <el-form-item label="其他" prop="other">
@@ -192,8 +197,10 @@
 </template>
 <script>
 import { listUplisttest, getUplisttest, delUplisttest, addUplisttest, updateUplisttest } from '@/api/module/uplisttest'
+import UploadImage from '@/components/UploadImage';
 export default {
   name: "uplisttest",
+  components:{ UploadImage },
   data() {
     return {
           // 遮罩层
@@ -213,7 +220,7 @@ export default {
           // 弹出层标题
           title: "",
           // 是否显示弹出层
-          open: false,           
+          open: true,           
             // problem_type字典
             problemTypeOptions: [],           
             // distri字典
