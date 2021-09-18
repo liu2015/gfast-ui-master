@@ -115,7 +115,7 @@
              <el-table-column label="id" align="center" prop="id" />   
              <el-table-column label="问题类型(报修类型)" align="center" prop="problem_type" :formatter="problemTypeFormat" />   
              <el-table-column label="工单分派(大区分派)" align="center" prop="distri" :formatter="distriFormat" />   
-             <el-table-column label="问题描述" align="center" prop="describe" />   
+             <el-table-column label="问题描述"  align="center" prop="describe" />   
              <el-table-column label="反馈门店" align="center" prop="store_type" />   
              <el-table-column label="联系人电话" align="center" prop="tel" />   
              <el-table-column label="附件" align="center" prop="enclosure" />   
@@ -170,7 +170,7 @@
                       </el-select>
                     </el-form-item>            
                     <el-form-item label="问题描述" prop="describe" >
-                      <el-input v-model="form.describe" placeholder="请输入问题描述" />
+                      <el-input type="textarea" v-model="form.describe" placeholder="请输入问题描述" />
                     </el-form-item>            
                     <el-form-item label="联系人电话" prop="tel" >
                       <el-input v-model="form.tel" placeholder="请输入联系人电话" />
