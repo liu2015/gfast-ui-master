@@ -10,4 +10,4 @@ ADD default.conf /etc/nginx/conf.d/
 ENTRYPOINT nginx -g "daemon off;"
 
 
-#docker -itd -p80:80 nginx 
+#docker run -itd -p80:80 nginx 
