@@ -153,9 +153,9 @@
                       <el-select v-model="form.problem_type" placeholder="请选择问题类型(报修类型)" >
                         <el-option 
                           v-for="dict in problemTypeOptions"
-                          :key="dict.key"
-                          :label="dict.value"
-                          :value="dict.key"
+                          :key="dict.value"
+                          :label="dict.label"
+                          :value="dict.value"
                         ></el-option>
                       </el-select>
                     </el-form-item>            
@@ -163,9 +163,9 @@
                       <el-select v-model="form.distri" placeholder="请选择工单分派(大区分派)">
                         <el-option
                           v-for="dict in distriOptions"
-                          :key="dict.key"
-                          :label="dict.value"
-                          :value="dict.key"
+                          :key="dict.value"
+                          :label="dict.label"
+                          :value="dict.value"
                         ></el-option>
                       </el-select>
                     </el-form-item>            
@@ -222,9 +222,71 @@ export default {
           // 是否显示弹出层
           open: true,           
             // problem_type字典
-            problemTypeOptions: [],           
+            problemTypeOptions: [
+        {
+          value: '外卖刷库存问题',
+          label: '外卖刷库存问题'
+        },
+                {
+          value: 'pos网络_软件问题',
+          label: 'pos网络_软件问题'
+        },
+                {
+          value: 'pos硬件问题',
+          label: 'pos硬件问题'
+        },    
+                    {
+          value: '券_会员问题',
+          label: '券_会员问题'
+        },
+                           {
+          value: '线下活动问题',
+          label: '线下活动问题'
+        },
+          {
+          value: '外卖问题',
+          label: '外卖问题'
+        },
+          {
+          value: 'sap问题',
+          label: 'sap问题'
+        },
+          {
+          value: '中台问题',
+          label: '中台问题'
+        },
+          {
+          value: '其他问题',
+          label: '其他问题'
+        },
+            ],           
             // distri字典
-            distriOptions: [],          
+            distriOptions: [
+                        {
+          value: '湖北大区',
+          label: '湖北大区'
+        },
+     {
+          value: '华中大区',
+          label: '华中大区'
+        },
+             {
+          value: '华南大区',
+          label: '华南大区'
+        },
+                     {
+          value: '华东大区',
+          label: '华东大区'
+        },
+          {
+          value: '华西大区',
+          label: '华西大区'
+        },
+                 {
+          value: '华北大区',
+          label: '华北大区'
+        },
+            ],          
         // 查询参数
         queryParams: {
           pageNum: 1,
@@ -260,13 +322,14 @@ export default {
     },
     created() {
         this.getList();    
-        this.getDicts("type_test").then(response => {
-          this.problemTypeOptions = response.data.values || [];
-        });    
-        this.getDicts("daqu_type").then(response => {
-          this.distriOptions = response.data.values || [];
-        });    
+    //     this.getDicts("type_test").then(response => {
+    //       this.problemTypeOptions = response.data.values || [];
+    //     });    
+    //     this.getDicts("daqu_type").then(response => {
+    //       this.distriOptions = response.data.values || [];
+    //     });    
     },
+
     methods: {
         /** 查询外部工单申请列表 */
         getList() {
